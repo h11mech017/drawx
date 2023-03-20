@@ -1,0 +1,56 @@
+import 'package:fl_chart/fl_chart.dart';
+import 'package:flutter/material.dart';
+
+class LivePieChart extends StatefulWidget {
+  final List<double> data;
+  final List<String> labels;
+
+  LivePieChart({required this.data, required this.labels});
+
+  @override
+  _LivePieChartState createState() => _LivePieChartState();
+}
+
+class _LivePieChartState extends State<LivePieChart> {
+  List<Color> colors = [
+    Colors.blue,
+    Colors.red,
+    Colors.green,
+    Colors.yellow,
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    List<PieChartSectionData> sections = _generateSectionsFromData(widget.data, widget.labels);
+
+    return PieChart(
+      PieChartData(
+        sectionsSpace: 0,
+        centerSpaceRadius: 80,
+        startDegreeOffset: -90,
+        sections: sections,
+      ),
+    );
+  }
+
+  List<PieChartSectionData> _generateSectionsFromData(List<double> data, List<String> labels) {
+    return List.generate(data.length, (index) {
+      final value = data[index];
+      final color = colors[index % colors.length];
+      final label = labels[index];
+
+      return PieChartSectionData(
+        value: value,
+        color: color,
+        title: '',
+        showTitle: false,
+        titlePositionPercentageOffset: 0.5,
+        badgeWidget: Text(
+          label,
+          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+        ),
+        badgePositionPercentageOffset: 0.5,
+      );
+    });
+  }
+}
