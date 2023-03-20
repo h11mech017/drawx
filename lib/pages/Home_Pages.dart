@@ -20,26 +20,31 @@ class _HomePagesState extends State<HomePages> {
               const Spacer(),
               const Draw(),
               const Spacer(),
-              const TextField(
+              TextField(
                 obscureText: false,
                 decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: "Name",
-                ),
-              ),
-              Row(
-                children: [
-                  TextButton(
+                  suffix: TextButton(
                     onPressed: () {  },
                     child: const Text('Add'),
                   ),
-                  const Spacer(),
-                  TextButton(
-                    onPressed: () {  },
-                    child: const Text('List'),
-                  ),
-                ],
+                  border: const OutlineInputBorder(),
+                  labelText: "Name",
+                ),
               ),
+              //// or put Buttons in bottom.
+              // Row(
+              //   children: [
+              //     TextButton(
+              //       onPressed: () {  },
+              //       child: const Text('Add'),
+              //     ),
+              //     const Spacer(),
+              //     TextButton(
+              //       onPressed: () {  },
+              //       child: const Text('List'),
+              //     ),
+              //   ],
+              // ),
               const Spacer()
             ],
           ),
