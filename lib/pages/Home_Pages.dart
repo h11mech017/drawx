@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 class HomePages extends StatefulWidget {
   const HomePages({Key? key}) : super(key: key);
 
@@ -8,6 +7,7 @@ class HomePages extends StatefulWidget {
 }
 
 class _HomePagesState extends State<HomePages> {
+  
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -27,9 +27,18 @@ class _HomePagesState extends State<HomePages> {
                   labelText: "Name",
                 ),
               ),
-              TextButton(
-                onPressed: () { },
-                child: const Text('Add'),
+              Row(
+                children: [
+                  TextButton(
+                    onPressed: () {  },
+                    child: const Text('Add'),
+                  ),
+                  const Spacer(),
+                  TextButton(
+                    onPressed: () {  },
+                    child: const Text('List'),
+                  ),
+                ],
               ),
               const Spacer()
             ],
