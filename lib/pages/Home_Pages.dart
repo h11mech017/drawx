@@ -65,6 +65,14 @@ class _DrawLiveWidgetState extends State<DrawLiveWidget> {
     }
   }
 
+  void _checkEmptyElement() {
+    if (options.contains("")) {
+      prob.remove(prob[0]);
+      options.removeWhere( (item) => item.isEmpty );
+    }
+    _calculateProb();
+  }
+
   @override
   Widget build(BuildContext context) {
 
@@ -72,7 +80,7 @@ class _DrawLiveWidgetState extends State<DrawLiveWidget> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         SizedBox(height: 16),
-        if (prob.isNotEmpty && options.isNotEmpty)
+        if(prob.isNotEmpty && options.isNotEmpty)
           Container(
             height: 300,
             width: 300,
@@ -84,7 +92,7 @@ class _DrawLiveWidgetState extends State<DrawLiveWidget> {
           onSubmitted: (value) {
             setState(() {
               options.add(_controller.text);
-              _calculateProb();
+              _checkEmptyElement();
               _controller.clear();
             });
           },
@@ -93,7 +101,7 @@ class _DrawLiveWidgetState extends State<DrawLiveWidget> {
               onPressed: () {
                 setState(() {
                   options.add(_controller.text);
-                  _calculateProb();
+                  _checkEmptyElement();
                   _controller.clear();
                 });
               },

@@ -13,10 +13,11 @@ class LivePieChart extends StatefulWidget {
 
 class _LivePieChartState extends State<LivePieChart> {
   List<Color> colors = [
-    Colors.blue,
-    Colors.red,
-    Colors.green,
-    Colors.yellow,
+    const Color (0xffD95AF3),
+    const Color (0xff3EE094),
+    const Color (0xff3398F6),
+    const Color (0XffFA4A42),
+    const Color (0xffFE9539)
   ];
 
   @override
