@@ -15,6 +15,7 @@ class _HomePagesState extends State<HomePages> {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: "DrawX_",
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(title: const Text("DrawX_"),),
         body: Center(
@@ -22,10 +23,17 @@ class _HomePagesState extends State<HomePages> {
             children: const [
               DrawLiveWidget(),
               // or put Buttons in bottom.
-
-              Spacer()
             ],
           ),
+        ),
+        bottomNavigationBar: BottomNavigationBar(
+          elevation: 10,
+          showSelectedLabels: false,
+          items: const [
+            BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
+            BottomNavigationBarItem(icon: Icon(Icons.list), label: "List"),
+            BottomNavigationBarItem(icon: Icon(Icons.edit), label: "Edit")
+          ],
         ),
       ),
     );
@@ -109,19 +117,6 @@ class _DrawLiveWidgetState extends State<DrawLiveWidget> {
               labelText: "Name",
             ),
           ),
-        ),
-        Row(
-          children: [
-            TextButton(
-              onPressed: () {  },
-              child: const Text('Roll!'),
-            ),
-            const Spacer(),
-            TextButton(
-              onPressed: () {  },
-              child: const Text('List'),
-            ),
-          ],
         ),
       ],
     );
