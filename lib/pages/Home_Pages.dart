@@ -18,11 +18,11 @@ class _HomePagesState extends State<HomePages> {
         appBar: AppBar(title: const Text("DrawX_"),),
         body: Center(
           child: Column(
-            children: [
+            children: const [
               DrawLiveWidget(),
               // or put Buttons in bottom.
 
-              const Spacer()
+              Spacer()
             ],
           ),
         ),
@@ -32,6 +32,8 @@ class _HomePagesState extends State<HomePages> {
 }
 
 class DrawLiveWidget extends StatefulWidget {
+  const DrawLiveWidget({super.key});
+
 
   @override
   _DrawLiveWidgetState createState() => _DrawLiveWidgetState();
@@ -41,7 +43,7 @@ class _DrawLiveWidgetState extends State<DrawLiveWidget> {
 
   List<double> prob = [];
   List<String> options = [];
-  TextEditingController _controller = TextEditingController();
+  final TextEditingController _controller = TextEditingController();
 
   void _calculateProb() {
     prob.add(1.0);
