@@ -19,24 +19,9 @@ class _HomePagesState extends State<HomePages> {
         body: Center(
           child: Column(
             children: [
-              const Spacer(),
               DrawLiveWidget(),
-              const Spacer(),
+              // or put Buttons in bottom.
 
-              //// or put Buttons in bottom.
-              // Row(
-              //   children: [
-              //     TextButton(
-              //       onPressed: () {  },
-              //       child: const Text('Add'),
-              //     ),
-              //     const Spacer(),
-              //     TextButton(
-              //       onPressed: () {  },
-              //       child: const Text('List'),
-              //     ),
-              //   ],
-              // ),
               const Spacer()
             ],
           ),
@@ -79,11 +64,10 @@ class _DrawLiveWidgetState extends State<DrawLiveWidget> {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        SizedBox(height: 16),
         if(prob.isNotEmpty && options.isNotEmpty)
-          Container(
-            height: 300,
-            width: 300,
+          SizedBox(
+            height: 285,
+            width: 285,
             child: LivePieChart(data: prob, labels: options),
           ),
         TextField(
@@ -110,6 +94,19 @@ class _DrawLiveWidgetState extends State<DrawLiveWidget> {
             border: const OutlineInputBorder(),
             labelText: "Name",
           ),
+        ),
+        Row(
+          children: [
+            TextButton(
+              onPressed: () {  },
+              child: const Text('Roll!'),
+            ),
+            const Spacer(),
+            TextButton(
+              onPressed: () {  },
+              child: const Text('List'),
+            ),
+          ],
         ),
       ],
     );

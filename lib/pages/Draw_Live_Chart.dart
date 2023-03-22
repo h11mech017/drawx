@@ -48,7 +48,7 @@ class _LivePieChartState extends State<LivePieChart> {
         titlePositionPercentageOffset: 0.5,
         badgeWidget: Text(
           label,
-          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+          style: const TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
         ),
         badgePositionPercentageOffset: 0.5,
       );
