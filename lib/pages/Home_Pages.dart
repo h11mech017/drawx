@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'package:drawx/pages/Draw_Live_Chart.dart';
 
@@ -67,10 +68,18 @@ class _DrawLiveWidgetState extends State<DrawLiveWidget> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         if(prob.isNotEmpty && options.isNotEmpty)
-          SizedBox(
-            height: 285,
-            width: 285,
-            child: LivePieChart(data: prob, labels: options),
+          Container(
+            margin: const EdgeInsets.all(20),
+
+            decoration: BoxDecoration(
+              color: Colors.grey[400],
+              borderRadius: BorderRadius.circular(180),
+            ),
+            child: SizedBox(
+              height: 285,
+              width: 285,
+              child: LivePieChart(data: prob, labels: options),
+            ),
           ),
         TextField(
           obscureText: false,
