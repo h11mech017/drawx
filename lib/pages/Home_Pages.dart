@@ -75,20 +75,14 @@ class _DrawLiveWidgetState extends State<DrawLiveWidget> {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        if(prob.isNotEmpty && options.isNotEmpty)
-          Container(
-            margin: const EdgeInsets.all(20),
-
-            decoration: BoxDecoration(
-              color: Colors.grey[400],
-              borderRadius: BorderRadius.circular(180),
-            ),
-            child: SizedBox(
-              height: 285,
-              width: 285,
-              child: LivePieChart(data: prob, labels: options),
-            ),
+        Container(
+          margin: const EdgeInsets.all(20),
+          child: SizedBox(
+            height: 300,
+            width: 300,
+            child: LivePieChart(data: prob, labels: options),
           ),
+        ),
         SizedBox(
           width: 450,
           height: 60,

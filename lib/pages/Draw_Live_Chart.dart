@@ -27,8 +27,11 @@ class _LivePieChartState extends State<LivePieChart> {
     return PieChart(
       PieChartData(
         sectionsSpace: 0,
-        centerSpaceRadius: 80,
+        centerSpaceRadius: 5,
         startDegreeOffset: -90,
+        borderData: FlBorderData(
+          show: false,
+        ),
         sections: sections,
       ),
     );
@@ -42,6 +45,7 @@ class _LivePieChartState extends State<LivePieChart> {
 
       return PieChartSectionData(
         value: value,
+        radius: 150,
         color: color,
         title: '',
         showTitle: false,
