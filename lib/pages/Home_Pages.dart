@@ -81,29 +81,33 @@ class _DrawLiveWidgetState extends State<DrawLiveWidget> {
               child: LivePieChart(data: prob, labels: options),
             ),
           ),
-        TextField(
-          obscureText: false,
-          controller: _controller,
-          onSubmitted: (value) {
-            setState(() {
-              options.add(_controller.text);
-              _checkEmptyElement();
-              _controller.clear();
-            });
-          },
-          decoration: InputDecoration(
-            suffix: TextButton(
-              onPressed: () {
-                setState(() {
-                  options.add(_controller.text);
-                  _checkEmptyElement();
-                  _controller.clear();
-                });
-              },
-              child: const Text('Add'),
+        SizedBox(
+          width: 450,
+          height: 60,
+          child: TextField(
+            obscureText: false,
+            controller: _controller,
+            onSubmitted: (value) {
+              setState(() {
+                options.add(_controller.text);
+                _checkEmptyElement();
+                _controller.clear();
+              });
+            },
+            decoration: InputDecoration(
+              suffix: TextButton(
+                onPressed: () {
+                  setState(() {
+                    options.add(_controller.text);
+                    _checkEmptyElement();
+                    _controller.clear();
+                  });
+                },
+                child: const Text('Add'),
+              ),
+              border: const OutlineInputBorder(),
+              labelText: "Name",
             ),
-            border: const OutlineInputBorder(),
-            labelText: "Name",
           ),
         ),
         Row(
