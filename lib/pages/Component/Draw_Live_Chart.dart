@@ -13,16 +13,17 @@ class LivePieChart extends StatefulWidget {
 
 class _LivePieChartState extends State<LivePieChart> {
   List<Color> colors = [
-    const Color (0xffD95AF3),
-    const Color (0xff3EE094),
-    const Color (0xff3398F6),
-    const Color (0XffFA4A42),
-    const Color (0xffFE9539)
+    const Color(0xffD95AF3),
+    const Color(0xff3EE094),
+    const Color(0xff3398F6),
+    const Color(0XffFA4A42),
+    const Color(0xffFE9539)
   ];
 
   @override
   Widget build(BuildContext context) {
-    List<PieChartSectionData> sections = _generateSectionsFromData(widget.data, widget.labels);
+    List<PieChartSectionData> sections =
+        _generateSectionsFromData(widget.data, widget.labels);
 
     return PieChart(
       PieChartData(
@@ -37,7 +38,8 @@ class _LivePieChartState extends State<LivePieChart> {
     );
   }
 
-  List<PieChartSectionData> _generateSectionsFromData(List<double> data, List<String> labels) {
+  List<PieChartSectionData> _generateSectionsFromData(
+      List<double> data, List<String> labels) {
     return List.generate(data.length, (index) {
       final value = data[index];
       final color = colors[index % colors.length];
@@ -52,7 +54,8 @@ class _LivePieChartState extends State<LivePieChart> {
         titlePositionPercentageOffset: 0.5,
         badgeWidget: Text(
           label,
-          style: const TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+          style:
+              const TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
         ),
         badgePositionPercentageOffset: 0.5,
       );
@@ -64,20 +67,18 @@ class _LivePieChartState extends State<LivePieChart> {
 class DrawLiveWidget extends StatefulWidget {
   const DrawLiveWidget({super.key});
 
-
   @override
   _DrawLiveWidgetState createState() => _DrawLiveWidgetState();
 }
 
 class _DrawLiveWidgetState extends State<DrawLiveWidget> {
-
   List<double> prob = [];
   List<String> options = [];
   final TextEditingController _controller = TextEditingController();
 
   void _calculateProb() {
     prob.add(1.0);
-    for(int i = 0; i < options.length; i++) {
+    for (int i = 0; i < options.length; i++) {
       prob[i] = (1 / options.length) * 100.0;
     }
   }
@@ -85,14 +86,13 @@ class _DrawLiveWidgetState extends State<DrawLiveWidget> {
   void _checkEmptyElement() {
     if (options.contains("")) {
       prob.remove(prob[0]);
-      options.removeWhere( (item) => item.isEmpty );
+      options.removeWhere((item) => item.isEmpty);
     }
     _calculateProb();
   }
 
   @override
   Widget build(BuildContext context) {
-
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
