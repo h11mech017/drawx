@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
@@ -11,6 +13,8 @@ class LivePieChart extends StatefulWidget {
   _LivePieChartState createState() => _LivePieChartState();
 }
 
+
+
 class _LivePieChartState extends State<LivePieChart> {
   List<Color> colors = [
     const Color(0xffD95AF3),
@@ -19,8 +23,8 @@ class _LivePieChartState extends State<LivePieChart> {
     const Color(0XffFA4A42),
     const Color(0xffFE9539)
   ];
-  //Added to Control rotation
-  double _rotationAngle = 0.0;
+
+  double _rotationAngle = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +37,7 @@ class _LivePieChartState extends State<LivePieChart> {
           PieChartData(
             sectionsSpace: 0,
             centerSpaceRadius: 5,
-            startDegreeOffset: -90 + _rotationAngle, // Actually effect
+            startDegreeOffset: -90 + _rotationAngle,
             borderData: FlBorderData(
               show: false,
             ),
@@ -44,14 +48,14 @@ class _LivePieChartState extends State<LivePieChart> {
           top: 0,
           right: 0,
           child: IconButton(
-            icon: const Icon(Icons.rotate_right),
+            icon: Icon(Icons.rotate_right),
             onPressed: () {
               setState(() {
-                _rotationAngle += 45.0;
+                _rotationAngle += Random().nextInt(1080) + 570;
               });
             },
           ),
-        ),// Whole Rotation Button
+        ),
       ],
     );
   }
