@@ -19,7 +19,7 @@ class _LivePieChartState extends State<LivePieChart> {
     const Color(0XffFA4A42),
     const Color(0xffFE9539)
   ];
-
+  //Added to Control rotation
   double _rotationAngle = 0.0;
 
   @override
@@ -33,7 +33,7 @@ class _LivePieChartState extends State<LivePieChart> {
           PieChartData(
             sectionsSpace: 0,
             centerSpaceRadius: 5,
-            startDegreeOffset: -90 + _rotationAngle,
+            startDegreeOffset: -90 + _rotationAngle, // Actually effect
             borderData: FlBorderData(
               show: false,
             ),
@@ -44,14 +44,14 @@ class _LivePieChartState extends State<LivePieChart> {
           top: 0,
           right: 0,
           child: IconButton(
-            icon: Icon(Icons.rotate_right),
+            icon: const Icon(Icons.rotate_right),
             onPressed: () {
               setState(() {
                 _rotationAngle += 45.0;
               });
             },
           ),
-        ),
+        ),// Whole Rotation Button
       ],
     );
   }
