@@ -20,21 +20,39 @@ class _LivePieChartState extends State<LivePieChart> {
     const Color(0xffFE9539)
   ];
 
+  double _rotationAngle = 0.0;
+
   @override
   Widget build(BuildContext context) {
     List<PieChartSectionData> sections =
         _generateSectionsFromData(widget.data, widget.labels);
 
-    return PieChart(
-      PieChartData(
-        sectionsSpace: 0,
-        centerSpaceRadius: 5,
-        startDegreeOffset: -90,
-        borderData: FlBorderData(
-          show: false,
+    return Stack(
+      children: [
+        PieChart(
+          PieChartData(
+            sectionsSpace: 0,
+            centerSpaceRadius: 5,
+            startDegreeOffset: -90 + _rotationAngle,
+            borderData: FlBorderData(
+              show: false,
+            ),
+            sections: sections,
+          ),
         ),
-        sections: sections,
-      ),
+        Positioned(
+          top: 0,
+          right: 0,
+          child: IconButton(
+            icon: Icon(Icons.rotate_right),
+            onPressed: () {
+              setState(() {
+                _rotationAngle += 45.0;
+              });
+            },
+          ),
+        ),
+      ],
     );
   }
 
