@@ -16,7 +16,7 @@ class _DrawLiveWidgetState extends State<DrawLiveWidget> {
   final TextEditingController _probController = TextEditingController();
 
   bool _showWheel = false;
-  List<String> _results = []; // Add a list to store the results
+  final List<String> _results = []; // Add a list to store the results
 
   void _addOption() {
     setState(() {
