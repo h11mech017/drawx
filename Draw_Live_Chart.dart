@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:drawx/pages/Component/wheel_of_fortune.dart';
 import 'package:drawx/pages/Component/edit.dart'; // Import the EditWheelOfFortune component
+import 'package:drawx/pages/Component/list.dart'; // Import the ListPages component
+
 
 class DrawLiveWidget extends StatefulWidget {
   const DrawLiveWidget({super.key});
@@ -16,6 +18,7 @@ class _DrawLiveWidgetState extends State<DrawLiveWidget> {
   final TextEditingController _probController = TextEditingController();
 
   bool _showWheel = false;
+  List<String> _results = []; // Add a list to store the results
 
   void _addOption() {
     setState(() {
@@ -31,14 +34,36 @@ class _DrawLiveWidgetState extends State<DrawLiveWidget> {
       setState(() {
         _showWheel = true;
       });
+    }else {
+      setState(() {
+        _showWheel = false;
+      });
     }
   }
 
-  void _openEditWheelOfFortune() {
-    Navigator.push(
+  void _openEditWheelOfFortune() async {
+    await Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => EditWheelOfFortune(options: options, probabilities: prob)),
     );
+
+    if (options.isEmpty) {
+      setState(() {
+        _showWheel = false;
+      });
+    } else {
+      setState(() {
+        _showWheel = true;
+      });
+    }
+  }
+  // Add a method to handle the result
+  void _onResult(String result) {
+    setState(() {
+      if (!_results.contains(result)) {
+        _results.add(result);
+      }
+    });
   }
 
   @override
@@ -53,7 +78,8 @@ class _DrawLiveWidgetState extends State<DrawLiveWidget> {
                 child: SizedBox(
                   height: 300,
                   width: 300,
-                  child: WheelOfFortune(items: options, probabilities: prob),
+                  // Add the _onResult callback to the WheelOfFortune
+                  child: WheelOfFortune(items: options, probabilities: prob, onResult: _onResult),
                 ),
               ),
             SizedBox(
@@ -90,6 +116,17 @@ class _DrawLiveWidgetState extends State<DrawLiveWidget> {
             TextButton(
               onPressed: _openEditWheelOfFortune,
               child: const Text('Edit Options'), // Add a button to open the EditWheelOfFortune page
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => ListPages(results: _results),
+                  ),
+                );
+              },
+              child: const Text('Show Results'),
             ),
           ],
         )

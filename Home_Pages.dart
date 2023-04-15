@@ -10,12 +10,7 @@ class HomePages extends StatefulWidget {
 
 class _HomePagesState extends State<HomePages> {
   int _tappedNum = 0;
-
-  final List<Widget> _widgetOption = <Widget>[
-    const DrawLiveWidget(),
-    const ListPages(),
-    const EditPages()
-  ];
+  List<String> _results = []; // Add this line to store results
 
   void onItemTapped(int tapped) {
     setState(() {
@@ -25,6 +20,13 @@ class _HomePagesState extends State<HomePages> {
 
   @override
   Widget build(BuildContext context) {
+    // Move the _widgetOption definition inside the build method
+    final List<Widget> _widgetOption = <Widget>[
+      const DrawLiveWidget(),
+      ListPages(results: _results), // Update this line
+      const EditPages()
+    ];
+
     return MaterialApp(
       title: "DrawX_",
       debugShowCheckedModeBanner: false,
@@ -63,4 +65,6 @@ class _HomePagesState extends State<HomePages> {
     );
   }
 }
+
+
 

@@ -4,11 +4,13 @@ import 'dart:math';
 class WheelOfFortune extends StatefulWidget {
   final List<String> items;
   final List<double> probabilities;
+  final Function(String) onResult; // Add the onResult callback
 
-  const WheelOfFortune({Key? key, required this.items, required this.probabilities}) : super(key: key);
+  const WheelOfFortune({Key? key, required this.items, required this.probabilities, required this.onResult})
+      : super(key: key);
 
   @override
-  _WheelOfFortuneState  createState() => _WheelOfFortuneState();
+  _WheelOfFortuneState createState() => _WheelOfFortuneState();
 }
 
 class _WheelOfFortuneState extends State<WheelOfFortune> with SingleTickerProviderStateMixin {
@@ -40,12 +42,16 @@ class _WheelOfFortuneState extends State<WheelOfFortune> with SingleTickerProvid
   void _spinWheel() {
     _controller.stop();
     _controller.value = 0.0;
-    final random = Random();
     final targetIndex = _selectItemBasedOnProbability();
     final targetAngle = _calculateTargetAngle(targetIndex);
-    _animation = Tween<double>(begin: _spinAngle, end: _spinAngle + 2 * pi * 5 + targetAngle)
-        .animate(_controller);
-    _controller.forward();
+    _animation = Tween<double>(begin: _spinAngle, end: _spinAngle + 2 * pi * 5 + targetAngle).animate(_controller);
+    _controller.forward().then((value) {
+      widget.onResult(widget.items[targetIndex]); // Call the onResult callback after spinning
+    });
+  }
+
+  void clearResult() {
+    widget.onResult('');
   }
 
   int _selectItemBasedOnProbability() {
@@ -53,31 +59,31 @@ class _WheelOfFortuneState extends State<WheelOfFortune> with SingleTickerProvid
     final randomValue = Random().nextDouble() * totalProbability;
     double sum = 0;
     for (int i = 0; i < widget.probabilities.length; i++) {
-    sum += widget.probabilities[i];
-    if (randomValue <= sum) {
-    return i;
-    }
+      sum += widget.probabilities[i];
+      if (randomValue <= sum) {
+        return i;
+      }
     }
     return 0;
-    }
+  }
 
   double _calculateTargetAngle(int targetIndex) {
     final angles = _calculateAngles();
     double sum = 0;
     for (int i = 0; i < targetIndex; i++) {
-    sum += angles[i];
+      sum += angles[i];
     }
     final double startAngle = sum;
     final double endAngle = sum + angles[targetIndex];
     return Random().nextDouble() * (endAngle - startAngle) + startAngle;
-    }
+  }
 
   List<double> _calculateAngles() {
     final totalProbability = widget.probabilities.reduce((a, b) => a + b);
     return widget.probabilities.map((prob) => 2 * pi * (prob / totalProbability)).toList();
   }
 
-@override
+  @override
   Widget build(BuildContext context) {
     return Stack(
       children: [
@@ -97,30 +103,28 @@ class _WheelOfFortuneState extends State<WheelOfFortune> with SingleTickerProvid
         _buildPointer(),
       ],
     );
-
   }
 
   Widget _buildWheel() {
     return CustomPaint(
-      size: Size.square(300),
-      painter: _WheelPainter(items: widget.items),
+        size: Size.square(300),
+    painter: _WheelPainter(items: widget.items),
     );
   }
-}
 
-// add _buildPointer methods
-Widget _buildPointer() {
-  return Positioned(
-    top: 0,
-    left: 0,
-    right: 0,
-    child: Container(
-      height: 40,
-      child: CustomPaint(
-        painter: TrianglePainter(color: Colors.white), // use the new TrianglePainter class
+  Widget _buildPointer() {
+    return Positioned(
+      top: 0,
+      left: 0,
+      right: 0,
+      child: Container(
+        height: 40,
+        child: CustomPaint(
+          painter: TrianglePainter(color: Colors.white),
+        ),
       ),
-    ),
-  );
+    );
+  }
 }
 
 class _WheelPainter extends CustomPainter {
@@ -169,19 +173,19 @@ class _WheelPainter extends CustomPainter {
           textOffset - Offset(textPainter.width / 2, textPainter.height / 2));
     }
 
-    //add the center point
     final Paint circlePaint = Paint()
-      ..color = Colors.white // setting the center point color
+      ..color = Colors.white
       ..style = PaintingStyle.fill;
 
-    canvas.drawCircle(center, 4.0, circlePaint); // setting the center radius
+    canvas.drawCircle(center, 4.0, circlePaint);
   }
-    @override
-    bool shouldRepaint(CustomPainter oldDelegate) {
-      return true;
-    }
+
+  @override
+  bool shouldRepaint(CustomPainter oldDelegate) {
+    return true;
   }
-// add TrianglePainter class
+}
+
 class TrianglePainter extends CustomPainter {
   final Color color;
 
@@ -194,9 +198,9 @@ class TrianglePainter extends CustomPainter {
       ..style = PaintingStyle.fill;
 
     final Paint strokePaint = Paint()
-      ..color = Colors.grey // setting the color of edge
+      ..color = Colors.grey
       ..style = PaintingStyle.stroke
-      ..strokeWidth = 3.0; // setting the width of edge
+      ..strokeWidth = 3.0;
 
     final path = Path();
     path.moveTo(size.width / 2- 15,  0);
@@ -205,7 +209,7 @@ class TrianglePainter extends CustomPainter {
     path.close();
 
     canvas.drawPath(path, paint);
-    canvas.drawPath(path, strokePaint); //draw the edge
+    canvas.drawPath(path, strokePaint);
   }
 
   @override
@@ -213,3 +217,4 @@ class TrianglePainter extends CustomPainter {
     return false;
   }
 }
+
