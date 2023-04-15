@@ -100,8 +100,8 @@ class _DrawLiveWidgetState extends State<DrawLiveWidget> {
 
   void _calculateProb() {
     prob.add(1.0);
-    for (int i = 0; i < options.length; i++) {
-      prob[i] = (1 / options.length) * 100.0;
+    for (int i = 0; i < prob.length; i++) {
+      prob[i] = (1 / prob.length);
     }
   }
 
