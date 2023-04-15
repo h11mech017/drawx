@@ -13,21 +13,21 @@ class _EditPagesState extends State<EditPages> {
   List<double> _probabilities = [];
 
   List<Map<String, dynamic>> _presetTemplate1 = [
-    {'name': '模板1-1', 'probability': 0.1},
-    {'name': '模板1-2', 'probability': 0.2},
-    {'name': '模板1-3', 'probability': 0.3},
+    {'name': 'Template1-1', 'probability': 0.1},
+    {'name': 'Template1-2', 'probability': 0.2},
+    {'name': 'Template1-3', 'probability': 0.3},
   ];
 
   List<Map<String, dynamic>> _presetTemplate2 = [
-    {'name': '模板2-1', 'probability': 0.1},
-    {'name': '模板2-2', 'probability': 0.2},
-    {'name': '模板2-3', 'probability': 0.3},
+    {'name': 'Template2-1', 'probability': 0.1},
+    {'name': 'Template2-2', 'probability': 0.2},
+    {'name': 'Template2-3', 'probability': 0.3},
   ];
 
   List<Map<String, dynamic>> _presetTemplate3 = [
-    {'name': '模板3-1', 'probability': 0.1},
-    {'name': '模板3-2', 'probability': 0.2},
-    {'name': '模板3-3', 'probability': 0.3},
+    {'name': 'Template3-1', 'probability': 0.1},
+    {'name': 'Template3-2', 'probability': 0.2},
+    {'name': 'Template3-3', 'probability': 0.3},
   ];
 
   bool _showPresets = false;
@@ -36,7 +36,7 @@ class _EditPagesState extends State<EditPages> {
     List<Map<String, dynamic>> randomOptions = [];
     List<double> randomProbabilities = [];
     for (int i = 0; i < count; i++) {
-      randomOptions.add({'name': '随机选项${Random().nextInt(100)}', 'probability': Random().nextDouble()});
+      randomOptions.add({'name': 'Random options${Random().nextInt(100)}', 'probability': Random().nextDouble()});
     }
     setState(() {
       _options = randomOptions;
@@ -62,7 +62,7 @@ class _EditPagesState extends State<EditPages> {
               itemBuilder: (BuildContext context, int index) {
                 return GestureDetector(
                   onTap: () {
-                    print('选中了 ${_options[index]['name']}');
+                    print('choose  ${_options[index]['name']}');
                   },
                   child: Padding(
                     padding: const EdgeInsets.symmetric(vertical: 8.0),
@@ -84,7 +84,7 @@ class _EditPagesState extends State<EditPages> {
             child: ElevatedButton(
               onPressed: () {
                 _showPresetTemplates();
-                // 使用预设奖品模板
+                // Use of pre-defined prize templates
                 // List<Map<String, dynamic>> presetOptions = List.generate(_presetTemplates.length, (index) {
                 //   return {
                 //     'name': _presetTemplates[index]['name'] as String,
@@ -100,7 +100,7 @@ class _EditPagesState extends State<EditPages> {
                 primary: Colors.white,
                 onPrimary: Colors.black,
               ),
-              child: const Text('显示预设模板'),
+              child: const Text('Show preset templates'),
             ),
           ),
           if (_showPresets) ...[
@@ -113,7 +113,7 @@ class _EditPagesState extends State<EditPages> {
                 children: [
                   ElevatedButton(
                     onPressed: () {
-                      // 使用预设模板1
+                      // use Generate random options1
                       List<Map<String, dynamic>> presetOptions = List.generate(_presetTemplate1.length, (index) {
                         return {
                           'name': _presetTemplate1[index]['name'] as String,
@@ -129,12 +129,12 @@ class _EditPagesState extends State<EditPages> {
                       primary: Colors.white,
                       onPrimary: Colors.black,
                     ),
-                    child: const Text('预设模板1'),
+                    child: const Text('Preset template 1'),
                   ),
                   SizedBox(height: 10),
                   ElevatedButton(
                     onPressed: () {
-                      // 使用预设模板2
+                      // use Preset template 2
                       List<Map<String, dynamic>> presetOptions = List.generate(_presetTemplate2.length, (index) {
                         return {
                           'name': _presetTemplate2[index]['name'] as String,
@@ -150,12 +150,12 @@ class _EditPagesState extends State<EditPages> {
                       primary: Colors.white,
                       onPrimary: Colors.black,
                     ),
-                    child: const Text('预设模板2'),
+                    child: const Text('Preset template 2'),
                   ),
                   SizedBox(height: 10),
                   ElevatedButton(
                     onPressed: () {
-                      // 使用预设模板3
+                      // useing Preset template 3
                       List<Map<String, dynamic>> presetOptions = List.generate(_presetTemplate3.length, (index) {
                         return {
                           'name': _presetTemplate3[index]['name'] as String,
@@ -171,7 +171,7 @@ class _EditPagesState extends State<EditPages> {
                       primary: Colors.white,
                       onPrimary: Colors.black,
                     ),
-                    child: const Text('预设模板3'),
+                    child: const Text('Preset template 3'),
                   ),
                 ],
               ),
@@ -182,16 +182,16 @@ class _EditPagesState extends State<EditPages> {
             bottom: 0,
             child: ElevatedButton(
               onPressed: () {
-                // 生成随机选项
+                // Generate random options
                 _generateRandomOptions(5);
-                print('生成随机选项: $_options');
-                print('生成随机概率: $_probabilities');
+                print('Generate random options: $_options');
+                print('Generate random probabilities: $_probabilities');
               },
               style: ElevatedButton.styleFrom(
                 primary: Colors.white,
                 onPrimary: Colors.black,
               ),
-              child: const Text('生成随机选项'),
+              child: const Text('Generate random options'),
             ),
           ),
         ],
