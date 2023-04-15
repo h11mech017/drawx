@@ -12,19 +12,19 @@ class _EditPagesState extends State<EditPages> {
   List<Map<String, dynamic>> _options = [];
   List<double> _probabilities = [];
 
-  List<Map<String, dynamic>> _presetTemplate1 = [
+  final List<Map<String, dynamic>> _presetTemplate1 = [
     {'name': 'Template1-1', 'probability': 0.1},
     {'name': 'Template1-2', 'probability': 0.2},
     {'name': 'Template1-3', 'probability': 0.3},
   ];
 
-  List<Map<String, dynamic>> _presetTemplate2 = [
+  final List<Map<String, dynamic>> _presetTemplate2 = [
     {'name': 'Template2-1', 'probability': 0.1},
     {'name': 'Template2-2', 'probability': 0.2},
     {'name': 'Template2-3', 'probability': 0.3},
   ];
 
-  List<Map<String, dynamic>> _presetTemplate3 = [
+  final List<Map<String, dynamic>> _presetTemplate3 = [
     {'name': 'Template3-1', 'probability': 0.1},
     {'name': 'Template3-2', 'probability': 0.2},
     {'name': 'Template3-3', 'probability': 0.3},
@@ -36,7 +36,10 @@ class _EditPagesState extends State<EditPages> {
     List<Map<String, dynamic>> randomOptions = [];
     List<double> randomProbabilities = [];
     for (int i = 0; i < count; i++) {
-      randomOptions.add({'name': 'Random options${Random().nextInt(100)}', 'probability': Random().nextDouble()});
+      randomOptions.add({
+        'name': 'Random options${Random().nextInt(100)}',
+        'probability': Random().nextDouble()
+      });
     }
     setState(() {
       _options = randomOptions;
@@ -66,14 +69,16 @@ class _EditPagesState extends State<EditPages> {
                   },
                   child: Padding(
                     padding: const EdgeInsets.symmetric(vertical: 8.0),
-                child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Text(_options[index]['name']),
-                      Text((_options[index]['probability'] * 100).toStringAsFixed(2) + '%'),
-                    ],
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Text(_options[index]['name']),
+                        Text((_options[index]['probability'] * 100)
+                                .toStringAsFixed(2) +
+                            '%'),
+                      ],
+                    ),
                   ),
-                ),
                 );
               },
             ),
@@ -97,8 +102,7 @@ class _EditPagesState extends State<EditPages> {
                 // });
               },
               style: ElevatedButton.styleFrom(
-                primary: Colors.white,
-                onPrimary: Colors.black,
+                foregroundColor: Colors.black, backgroundColor: Colors.white,
               ),
               child: const Text('Show preset templates'),
             ),
@@ -114,41 +118,47 @@ class _EditPagesState extends State<EditPages> {
                   ElevatedButton(
                     onPressed: () {
                       // use Generate random options1
-                      List<Map<String, dynamic>> presetOptions = List.generate(_presetTemplate1.length, (index) {
+                      List<Map<String, dynamic>> presetOptions =
+                          List.generate(_presetTemplate1.length, (index) {
                         return {
                           'name': _presetTemplate1[index]['name'] as String,
-                          'probability': _presetTemplate1[index]['probability'] as double,
+                          'probability':
+                              _presetTemplate1[index]['probability'] as double,
                         };
                       });
                       setState(() {
                         _options = presetOptions;
-                        _probabilities = presetOptions.map((option) => option['probability'] as double).toList();
+                        _probabilities = presetOptions
+                            .map((option) => option['probability'] as double)
+                            .toList();
                       });
                     },
                     style: ElevatedButton.styleFrom(
-                      primary: Colors.white,
-                      onPrimary: Colors.black,
+                      foregroundColor: Colors.black, backgroundColor: Colors.white,
                     ),
                     child: const Text('Preset template 1'),
                   ),
-                  SizedBox(height: 10),
+                  const SizedBox(height: 10),
                   ElevatedButton(
                     onPressed: () {
                       // use Preset template 2
-                      List<Map<String, dynamic>> presetOptions = List.generate(_presetTemplate2.length, (index) {
+                      List<Map<String, dynamic>> presetOptions =
+                          List.generate(_presetTemplate2.length, (index) {
                         return {
                           'name': _presetTemplate2[index]['name'] as String,
-                          'probability': _presetTemplate2[index]['probability'] as double,
+                          'probability':
+                              _presetTemplate2[index]['probability'] as double,
                         };
                       });
                       setState(() {
                         _options = presetOptions;
-                        _probabilities = presetOptions.map((option) => option['probability'] as double).toList();
+                        _probabilities = presetOptions
+                            .map((option) => option['probability'] as double)
+                            .toList();
                       });
                     },
                     style: ElevatedButton.styleFrom(
-                      primary: Colors.white,
-                      onPrimary: Colors.black,
+                      foregroundColor: Colors.black, backgroundColor: Colors.white,
                     ),
                     child: const Text('Preset template 2'),
                   ),
@@ -156,20 +166,23 @@ class _EditPagesState extends State<EditPages> {
                   ElevatedButton(
                     onPressed: () {
                       // useing Preset template 3
-                      List<Map<String, dynamic>> presetOptions = List.generate(_presetTemplate3.length, (index) {
+                      List<Map<String, dynamic>> presetOptions =
+                          List.generate(_presetTemplate3.length, (index) {
                         return {
                           'name': _presetTemplate3[index]['name'] as String,
-                          'probability': _presetTemplate3[index]['probability'] as double,
+                          'probability':
+                              _presetTemplate3[index]['probability'] as double,
                         };
                       });
                       setState(() {
                         _options = presetOptions;
-                        _probabilities = presetOptions.map((option) => option['probability'] as double).toList();
+                        _probabilities = presetOptions
+                            .map((option) => option['probability'] as double)
+                            .toList();
                       });
                     },
                     style: ElevatedButton.styleFrom(
-                      primary: Colors.white,
-                      onPrimary: Colors.black,
+                      foregroundColor: Colors.black, backgroundColor: Colors.white,
                     ),
                     child: const Text('Preset template 3'),
                   ),
@@ -188,8 +201,7 @@ class _EditPagesState extends State<EditPages> {
                 print('Generate random probabilities: $_probabilities');
               },
               style: ElevatedButton.styleFrom(
-                primary: Colors.white,
-                onPrimary: Colors.black,
+                foregroundColor: Colors.black, backgroundColor: Colors.white,
               ),
               child: const Text('Generate random options'),
             ),
@@ -199,7 +211,6 @@ class _EditPagesState extends State<EditPages> {
     );
   }
 }
-
 
 //to show the edited goods and properity
 class EditWheelOfFortune extends StatefulWidget {
@@ -239,12 +250,10 @@ class _EditWheelOfFortuneState extends State<EditWheelOfFortune> {
   }
 
   Future<void> _showEditDialog([int? index]) async {
-    final TextEditingController nameController = TextEditingController(
-        text: index == null ? '' : widget.options[index]);
+    final TextEditingController nameController =
+        TextEditingController(text: index == null ? '' : widget.options[index]);
     final TextEditingController probController = TextEditingController(
-        text: index == null
-            ? ''
-            : widget.probabilities[index].toString());
+        text: index == null ? '' : widget.probabilities[index].toString());
 
     return showDialog<void>(
       context: context,
@@ -290,7 +299,6 @@ class _EditWheelOfFortuneState extends State<EditWheelOfFortune> {
       },
     );
   }
-
 
   @override
   Widget build(BuildContext context) {
