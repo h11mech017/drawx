@@ -16,7 +16,7 @@ class _DrawLiveWidgetState extends State<DrawLiveWidget> {
   final TextEditingController _probController = TextEditingController();
 
   bool _showWheel = false;
-  final List<String> _results = []; // Add a list to store the results
+  List<String> _results = []; // Add a list to store the results
 
   void _addOption() {
     setState(() {
@@ -79,7 +79,9 @@ class _DrawLiveWidgetState extends State<DrawLiveWidget> {
                   // Add the _onResult callback to the WheelOfFortune
                   child: WheelOfFortune(items: options, probabilities: prob, onResult: _onResult),
                 ),
-              ),
+              )
+            else
+              const SizedBox(height: 300), // Add a placeholder when the wheel is not shown
             SizedBox(
               width: 450,
               height: 60,
