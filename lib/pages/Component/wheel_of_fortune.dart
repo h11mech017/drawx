@@ -16,13 +16,14 @@ class WheelOfFortune extends StatefulWidget {
 class _WheelOfFortuneState extends State<WheelOfFortune> with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _animation;
+  var isTapped = false;
   double _spinAngle = 0.0;
 
   @override
   void initState() {
     super.initState();
     _controller = AnimationController(
-      duration: const Duration(seconds: 5),
+      duration: const Duration(seconds: 4),
       vsync: this,
     );
     _animation = CurvedAnimation(parent: _controller, curve: Curves.easeOut);
@@ -39,7 +40,13 @@ class _WheelOfFortuneState extends State<WheelOfFortune> with SingleTickerProvid
     super.dispose();
   }
 
-  void _spinWheel() {
+  void _spinWheel() async {
+    if (isTapped){
+      return;
+    }
+    setState(() {
+      isTapped = true;// Add this line to prevent multiple taps
+    });
     _controller.stop();
     _controller.value = 0.0;
     final targetIndex = _selectItemBasedOnProbability();
@@ -47,6 +54,12 @@ class _WheelOfFortuneState extends State<WheelOfFortune> with SingleTickerProvid
     _animation = Tween<double>(begin: _spinAngle, end: _spinAngle + 2 * pi * 5 + targetAngle).animate(_controller);
     _controller.forward().then((value) {
       widget.onResult(widget.items[targetIndex]); // Call the onResult callback after spinning
+    });
+
+    await Future.delayed(const Duration(seconds: 8)); // wait 10 seconds after spinning
+
+    setState(() {
+      isTapped = false;// Add this line to prevent multiple taps
     });
   }
 
@@ -96,7 +109,7 @@ class _WheelOfFortuneState extends State<WheelOfFortune> with SingleTickerProvid
             alignment: Alignment.center,
             child: FloatingActionButton(
               onPressed: _spinWheel,
-              child: const Icon(Icons.ads_click_outlined),
+              child: const Icon(Icons.screen_rotation_alt_rounded),
             ),
           ),
         ),

@@ -45,7 +45,7 @@ class _HomePagesState extends State<HomePages> {
           showUnselectedLabels: false,
           selectedItemColor: Colors.black,
           unselectedItemColor: Colors.black12,
-          type: BottomNavigationBarType.shifting,
+          type: BottomNavigationBarType.fixed,
           items: const [
             BottomNavigationBarItem(
                 icon: Icon(Icons.home),
