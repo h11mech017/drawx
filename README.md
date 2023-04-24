@@ -16,9 +16,9 @@ DrawX is a Flutter application that allows users to create a custom live chart w
 
 2. Clone the repository:
 
-```sh
-git clone https://github.com/yourusername/DrawX.git
-```
+    ```sh
+    git clone https://github.com/yourusername/DrawX.git
+    ```
 
 3. Move into the project directory:
     
