@@ -1,16 +1,50 @@
-# drawx
+# DrawX
 
-A new Flutter project.
+DrawX is a Flutter application that allows users to create a custom live chart with options and their associated probabilities. Users can add, edit, or remove options, and view the results of their spins.
 
-## Getting Started
+## Features
 
-This project is a starting point for a Flutter application.
+- Add options with their probabilities
+- Edit options and probabilities
+- Remove options
+- Spin the live chart
+- View results of spins
 
-A few resources to get you started if this is your first Flutter project:
+## Installation
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+1. Ensure that you have [Flutter](https://flutter.dev/docs/get-started/install) and the [Dart SDK](https://dart.dev/get-dart) installed on your machine.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+2. Clone the repository:
+
+```sh
+git clone https://github.com/yourusername/DrawX.git
+```
+
+3. Move into the project directory:
+    
+    ```sh
+   cd DrawX
+   ```
+4. Install the dependencies:
+        
+    ```sh
+    flutter pub get
+    ```
+5. Run the app on an emulator or a connected device:
+        
+    ```sh
+    flutter run
+    ```
+## Contributors
+
+This project was developed in collaboration with the following group members:
+
+- Leo
+- Echo
+- Kindson
+- Shine
+- April44
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
