@@ -14,18 +14,16 @@ class _DrawLiveWidgetState extends State<DrawLiveWidget> {
   List<double> prob = [];
   List<String> options = [];
   final TextEditingController _nameController = TextEditingController();
-  final TextEditingController _probController = TextEditingController();
 
   bool _showWheel = false;
   List<String> _results = []; // Add a list to store the results
 
   void _addOption() {
     setState(() {
-      if (_nameController.text.isNotEmpty && _probController.text.isNotEmpty) {
+      if (_nameController.text.isNotEmpty) {
         options.add(_nameController.text);
-        prob.add(double.tryParse(_probController.text) ?? 1.0);
+        prob.add(1 / options.length);
         _nameController.clear();
-        _probController.clear();
       }
     });
 
@@ -90,30 +88,34 @@ class _DrawLiveWidgetState extends State<DrawLiveWidget> {
                 obscureText: false,
                 controller: _nameController,
                 onSubmitted: (_) => _addOption(),
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: "Name",
-                ),
-              ),
-            ),
-            SizedBox(
-              width: 450,
-              height: 60,
-              child: TextField(
-                obscureText: false,
-                controller: _probController,
-                keyboardType: TextInputType.number,
-                onSubmitted: (_) => _addOption(),
                 decoration: InputDecoration(
                   suffix: TextButton(
                     onPressed: _addOption,
                     child: const Text('Add'),
                   ),
-                  border: const OutlineInputBorder(),
-                  labelText: "Probability",
+                  border: OutlineInputBorder(),
+                  labelText: "Add Options",
                 ),
               ),
             ),
+            // SizedBox(
+            //   width: 450,
+            //   height: 60,
+            //   child: TextField(
+            //     obscureText: false,
+            //     controller: _probController,
+            //     keyboardType: TextInputType.number,
+            //     onSubmitted: (_) => _addOption(),
+            //     decoration: InputDecoration(
+            //       suffix: TextButton(
+            //         onPressed: _addOption,
+            //         child: const Text('Add'),
+            //       ),
+            //       //border: const OutlineInputBorder(),
+            //       //labelText: "Probability",
+            //     ),
+            //   ),
+            // ),
             TextButton(
               onPressed: _openEditWheelOfFortune,
               child: const Text('Edit Options'), // Add a button to open the EditWheelOfFortune page
