@@ -43,7 +43,7 @@ This project was developed in collaboration with the following group members:
 - Echo
 - Kindson
 - Shine
-- April44
+- Paris
 
 ## License
 
