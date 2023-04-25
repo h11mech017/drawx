@@ -51,7 +51,8 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 ## Project Detail
 Project Name: **DrawX**  
 Graphical Abstract  
-<img src="https://github.com/h11mech017/drawx/blob/main/image/mmexport1682407259140.png" width="200">      
+app icon:   
+<img src="https://github.com/h11mech017/drawx/blob/main/image/mmexport1682416082853.png" width="200">      
 Purpose of the Software
 
 ### Type of Software Development Process
