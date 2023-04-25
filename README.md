@@ -46,8 +46,10 @@ This project was developed in collaboration with the following group members:
 - Paris
 
 ## License
- 
-Project Name:  
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
+
+## Project Detail
+Project Name: **DrawX**  
 Graphical Abstract  
 [Insert a single image that represents your project]  
 Purpose of the Software
