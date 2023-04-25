@@ -13,6 +13,7 @@ class DrawLiveWidget extends StatefulWidget {
 class _DrawLiveWidgetState extends State<DrawLiveWidget> {
   List<double> prob = [];
   List<String> options = [];
+  String _latestResult = "";
   final TextEditingController _nameController = TextEditingController();
 
   bool _showWheel = false;
@@ -22,7 +23,10 @@ class _DrawLiveWidgetState extends State<DrawLiveWidget> {
     setState(() {
       if (_nameController.text.isNotEmpty) {
         options.add(_nameController.text);
-        prob.add(1 / options.length);
+        prob.add(0.17);
+        for (int i = 0; i<prob.length; i++) {
+          prob[i] = 1 / prob.length;
+        }
         _nameController.clear();
       }
     });
@@ -60,6 +64,7 @@ class _DrawLiveWidgetState extends State<DrawLiveWidget> {
       if (!_results.contains(result)) {
         _results.add(result);
       }
+      _latestResult = result;
     });
   }
 
@@ -69,17 +74,23 @@ class _DrawLiveWidgetState extends State<DrawLiveWidget> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            if (_showWheel)
+            if (_showWheel) ...[
               Container(
                 margin: const EdgeInsets.all(20),
                 child: SizedBox(
                   height: 300,
                   width: 300,
                   // Add the _onResult callback to the WheelOfFortune
-                  child: WheelOfFortune(items: options, probabilities: prob, onResult: _onResult),
+                  child: WheelOfFortune(
+                      items: options, probabilities: prob, onResult: _onResult),
                 ),
-              )
-            else
+              ),
+              Text(
+                'Result: $_latestResult', // Display the latest result
+                style: TextStyle(fontSize: 18),
+              ),
+              SizedBox(height: 20),
+            ] else
               const SizedBox(height: 300), // Add a placeholder when the wheel is not shown
             SizedBox(
               width: 450,

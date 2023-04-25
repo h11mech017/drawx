@@ -52,6 +52,10 @@ class _WheelOfFortuneState extends State<WheelOfFortune> with SingleTickerProvid
     _controller.value = 0.0;
     final targetIndex = _selectItemBasedOnProbability();
     final targetAngle = _calculateTargetAngle(targetIndex);
+
+    print('Target index: $targetIndex'); // Debug: Print target index
+    print('Target angle: $targetAngle'); // Debug: Print target angle
+
     _animation = Tween<double>(begin: _spinAngle, end: _spinAngle + 2 * pi * 5 + targetAngle).animate(_controller);
     _controller.forward().then((value) {
       widget.onResult(widget.items[targetIndex]); // Call the onResult callback after spinning
