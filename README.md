@@ -35,18 +35,6 @@ DrawX is a Flutter application that allows users to create a custom live chart w
     ```sh
     flutter run
     ```
-## Contributors
-
-This project was developed in collaboration with the following group members:
-
-- Leo
-- Echo
-- Kindson
-- Shine
-- Paris
-
-## License
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
 
 ## Project Detail
 Project Name: **DrawX**  
@@ -96,3 +84,16 @@ The current version of the software includes a Windows console and basic Flutter
     * Required packages: flutter_windows
     * Declaration
     * Open-source packages used: Flutter SDK, Windows API
+
+## Contributors
+
+This project was developed in collaboration with the following group members:
+
+- Leo
+- Echo
+- Kindson
+- Shine
+- Paris
+
+## License
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
