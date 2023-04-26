@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class ListPages extends StatefulWidget {
   final List<String> results; // Add a results parameter
 
-  const ListPages({Kggogey? key, required this.results}) : super(key: key);
+  const ListPages({Key? key, required this.results}) : super(key: key);
 
   @override
   _ListPagesState createState() => _ListPagesState();
