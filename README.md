@@ -68,9 +68,13 @@ Development Process:
 5. Deployment and maintenance (Week 13 onwards)
 
 ### Algorithm
-[Insert algorithm description here]
-Current Status of Your Software
-The current version of the software includes a Windows console and basic Flutter application with utility functions. It supports command-line arguments and UTF-8 encoding.
+Given a list of prizes and a corresponding list of probabilities, where the sum of probabilities equals 1.  
+When the user clicks the spin button, a random number is generated within the range of [0, 1).  
+The cumulative probabilities for each prize are calculated based on the probability list. The random number is then compared with the cumulative probabilities to determine the winning prize.  
+The rotation angle is calculated to stop at the winning prize.  
+The roulette wheel is rotated, and the winning prize is returned to the user after the rotation stops.  
+In summary, the algorithm of this app relies on probabilities and random numbers to determine the winning prize by computing the probability distribution and simulating the randomness of the rotation.  
+
 ### Future Plan
 1. Implement additional features based on user feedback.
 2. Optimize the codebase for better performance.
